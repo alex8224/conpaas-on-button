@@ -32,7 +32,7 @@ OLD_PHP_IP=`echo "SELECT option_value FROM wp_options WHERE option_name='home';"
 TESTURL=$OLD_PHP_IP/wp-conpaas.txt
 wget -t 2 -T 3 $TESTURL >> /tmp/wordpress.log
 if [ "$?" != "0" ]; then 
-    echo "UPDATE wp_options SET option_value = replace(option_value, '$OLD_PHP_IP', '$PHP_IP') WHERE option_name = 'home' OR option_name = 'siteurl';" | mysql -u mysqldb -h $IP -P $MYSQL_PORT ---password='contrail123' wordpress
+    echo "UPDATE wp_options SET option_value = replace(option_value, '$OLD_PHP_IP', '$PHP_IP') WHERE option_name = 'home' OR option_name = 'siteurl';" | mysql -u mysqldb -h $IP -P $MYSQL_PORT --password='contrail123' wordpress
 
     echo "UPDATE wp_posts SET guid = REPLACE (guid, '$OLD_PHP_IP', '$PHP_IP');" | mysql -u mysqldb -h $IP -P $MYSQL_PORT --password='contrail123' wordpress
 
